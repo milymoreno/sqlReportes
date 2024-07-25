@@ -1,0 +1,38 @@
+{"properties": [
+  {
+    "name": "spring.jpa.hibernate.show_sql",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.jpa.hibernate.show_sql'"
+  },
+  {
+    "name": "microinformes.properties.cors.allowed-origins",
+    "type": "java.lang.String",
+    "description": "A description for 'microinformes.properties.cors.allowed-origins'"
+  },
+  {
+    "name": "microinformes.messages.exceptions.internal-server",
+    "type": "java.lang.String",
+    "description": "A description for 'microinformes.messages.exceptions.internal-server'"
+  },
+  {
+    "name": "microinformes.messages.exceptions.bad-request",
+    "type": "java.lang.String",
+    "description": "A description for 'microinformes.messages.exceptions.bad-request'"
+  },
+  {
+    "name": "microinformes.messages.exceptions.unauthorized",
+    "type": "java.lang.String",
+    "description": "A description for 'microinformes.messages.exceptions.unauthorized'"
+  },
+  {
+    "name": "microinformes.messages.exceptions.resource-not-found",
+    "type": "java.lang.String",
+    "description": "A description for 'microinformes.messages.exceptions.resource-not-found'"
+  },
+  {
+    "name": "microinformes.messages.businessRules.ClientNotFound",
+    "type": "java.lang.String",
+    "description": "A description for 'microinformes.messages.businessRules.ClientNotFound'"
+  }
+  
+]}
