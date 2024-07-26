@@ -47,8 +47,10 @@ public class VisInformeCarteraRepositoryCustomImpl implements VisInformeCarteraR
 			queryString.append("AND NUMID_CLIENTE= :identificacion\r\n");
 		}
 		
-		queryString.append(")\r\n"
-				+ "        WHERE FilaExt BETWEEN :registroInicial AND :registroFinal");
+		queryString.append("""
+                )
+                        WHERE FilaExt BETWEEN :registroInicial AND :registroFinal\
+                """);
 		
 
 		Query query = entityManager.createNativeQuery(queryString.toString(),VisInformeCartera.class);

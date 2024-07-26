@@ -11,9 +11,11 @@ import com.bootfactory.microinformes.domain.model.entity.ParametroEntidad;
 @Repository
 public interface ParametroEntidadRepository extends JpaRepository<ParametroEntidad, Long>{
 	
-	@Query(value = "SELECT p.* FROM PARAMETROENTIDAD p"
-			+ " WHERE \r\n"
-			+ "p.ENTIDADFINANCIERA_ID=:idEntidadFinanciera\r\n", nativeQuery = true)
+	@Query(value = """
+            SELECT p.* FROM PARAMETROENTIDAD p\
+             WHERE 
+            p.ENTIDADFINANCIERA_ID=:idEntidadFinanciera
+            """, nativeQuery = true)
 	List<ParametroEntidad> listarParametroEntidad(Long idEntidadFinanciera);
 
 }

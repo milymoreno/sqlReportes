@@ -12,14 +12,18 @@ import com.bootfactory.microinformes.domain.model.entity.TipoIdentificacion;
 public interface TipoIdentificacionRepository extends JpaRepository<TipoIdentificacion, Long> {
 	
 	
-	@Query(value = "select t.* from tident t join entfin_tipoident e on t.id=e.TIPOIDENTIFICACION_ID\r\n"
-			+ "where e.ENTIDADFINANCIERA_ID=:idEntidadFinanciera", nativeQuery = true)
+	@Query(value = """
+            select t.* from tident t join entfin_tipoident e on t.id=e.TIPOIDENTIFICACION_ID
+            where e.ENTIDADFINANCIERA_ID=:idEntidadFinanciera\
+            """, nativeQuery = true)
 	List<TipoIdentificacion> listarTiposIdentificacion(Long idEntidadFinanciera);
 	
 	
-	@Query(value = "select t.* from tident t join entfin_tipoident e on t.id=e.TIPOIDENTIFICACION_ID\r\n"
-			+ "where e.ENTIDADFINANCIERA_ID=:idEntidadFinanciera\r\n"
-			+ "and t.codigo=:codTipoIdentificacion", nativeQuery = true)
+	@Query(value = """
+            select t.* from tident t join entfin_tipoident e on t.id=e.TIPOIDENTIFICACION_ID
+            where e.ENTIDADFINANCIERA_ID=:idEntidadFinanciera
+            and t.codigo=:codTipoIdentificacion\
+            """, nativeQuery = true)
 	List<TipoIdentificacion> buscarTipoIdentificacionByCodigo(Long idEntidadFinanciera,Long codTipoIdentificacion);
 }
 

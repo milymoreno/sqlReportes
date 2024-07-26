@@ -18,23 +18,25 @@ public class VisDesembolsosProgramadosRepositoryCustomImpl implements VisDesembo
 	@Override
 	public List<DesembolsosProgramadosDTO> listar(LocalDate fechaCorte) {
 		StringBuilder queryString = new StringBuilder(
-				"SELECT\r\n"
-				+ "    CASE nombre_producto\r\n"
-				+ "        WHEN 'ADC'                  THEN\r\n"
-				+ "            'ADC'\r\n"
-				+ "        WHEN 'CONFIRMING'           THEN\r\n"
-				+ "            'CF'\r\n"
-				+ "        WHEN 'DESCUENTO DE TITULOS' THEN\r\n"
-				+ "            'TV'\r\n"
-				+ "        WHEN 'LINEA TRIANGULAR'     THEN\r\n"
-				+ "            'LT'\r\n"
-				+ "    END                    AS producto,\r\n"
-				+ "    count(titulo_id)           AS cantidad,\r\n"
-				+ "    sum(valor_titulo) AS total\r\n"
-				+ "FROM\r\n"
-				+ "    V_DESEMBOLSOS_PROGRAMADOS\r\n"
-				+ "WHERE\r\n"
-				+ "        ESTADO_TITULO = 2\r\n"
+				"""
+                SELECT
+                    CASE nombre_producto
+                        WHEN 'ADC'                  THEN
+                            'ADC'
+                        WHEN 'CONFIRMING'           THEN
+                            'CF'
+                        WHEN 'DESCUENTO DE TITULOS' THEN
+                            'TV'
+                        WHEN 'LINEA TRIANGULAR'     THEN
+                            'LT'
+                    END                    AS producto,
+                    count(titulo_id)           AS cantidad,
+                    sum(valor_titulo) AS total
+                FROM
+                    V_DESEMBOLSOS_PROGRAMADOS
+                WHERE
+                        ESTADO_TITULO = 2
+                """
 				 );
 		
 

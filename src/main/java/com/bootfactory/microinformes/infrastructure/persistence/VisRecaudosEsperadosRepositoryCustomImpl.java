@@ -20,26 +20,28 @@ public class VisRecaudosEsperadosRepositoryCustomImpl implements VisRecaudosEspe
 	@Override
 	public List<RecaudosEsperadosDTO> listar(LocalDate fechaCorte) {
 		StringBuilder queryString = new StringBuilder(
-				"SELECT\r\n"
-				+ "    CASE nombre_producto\r\n"
-				+ "        WHEN 'ADC'                  THEN\r\n"
-				+ "            'ADC'\r\n"
-				+ "        WHEN 'CONFIRMING'           THEN\r\n"
-				+ "            'CF'\r\n"
-				+ "        WHEN 'DESCUENTO DE TITULOS' THEN\r\n"
-				+ "            'TV'\r\n"
-				+ "        WHEN 'LINEA TRIANGULAR'     THEN\r\n"
-				+ "            'LT'\r\n"
-				+ "    END                    AS producto,\r\n"
-				+ "    SUM(capital)           AS capital,\r\n"
-				+ "    SUM(interes_corriente) AS interesCorrientes,\r\n"
-				+ "    SUM(interes_mora)      AS interesMora,\r\n"
-				+ "    SUM(otros)             AS otros,\r\n"
-				+ "    SUM(total)             AS total\r\n"
-				+ "FROM\r\n"
-				+ "    v_recaudos_esperados\r\n"
-				+ "WHERE\r\n"
-				+ "        estado_obligacion = 0\r\n"
+				"""
+                SELECT
+                    CASE nombre_producto
+                        WHEN 'ADC'                  THEN
+                            'ADC'
+                        WHEN 'CONFIRMING'           THEN
+                            'CF'
+                        WHEN 'DESCUENTO DE TITULOS' THEN
+                            'TV'
+                        WHEN 'LINEA TRIANGULAR'     THEN
+                            'LT'
+                    END                    AS producto,
+                    SUM(capital)           AS capital,
+                    SUM(interes_corriente) AS interesCorrientes,
+                    SUM(interes_mora)      AS interesMora,
+                    SUM(otros)             AS otros,
+                    SUM(total)             AS total
+                FROM
+                    v_recaudos_esperados
+                WHERE
+                        estado_obligacion = 0
+                """
 				 );
 		
 

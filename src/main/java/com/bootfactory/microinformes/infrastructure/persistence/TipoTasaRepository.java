@@ -11,9 +11,11 @@ import com.bootfactory.microinformes.domain.model.entity.TipoTasa;
 @Repository
 public interface TipoTasaRepository extends JpaRepository<TipoTasa, Long> {
 
-	@Query(value = "SELECT t.* from TIPOTASA t\r\n"
-			+ "WHERE \r\n"
-			+ "t.entidadfinanciera_id=:idEntidadFinanciera", nativeQuery = true)
+	@Query(value = """
+            SELECT t.* from TIPOTASA t
+            WHERE 
+            t.entidadfinanciera_id=:idEntidadFinanciera\
+            """, nativeQuery = true)
 	List<TipoTasa> listartiposTasas( Long idEntidadFinanciera);
 
 }

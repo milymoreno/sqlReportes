@@ -22,37 +22,63 @@ public interface VisEstadoVMDRepository extends JpaRepository<VisEstadoVMD, Long
 	List<VisEstadoVMD> listarPaginado(@Param("idEntidadFinanciera") Long idEntidadFinanciera,
 			@Param("registroInicial") int registroInicial, @Param("registroFinal") int registroFinal);
 
-	@Query(value = "SELECT COUNT(vistaVMD.id_vista)    FROM " + "        V_ESTADO_VMD vistaVMD, "
-			+ "        CLIENTE cliente " + "    JOIN" + "        tident tipo "
-			+ "            on tipo.id=cliente.tipoidentificacion_id " + "    WHERE "
-			+ "        tipo.descripcion=vistaVMD.tipoident_cliente "
-			+ "        and vistaVMD.num_id_cliente=cliente.numid " + "        and tipo.codigo=:tipoIdentificacion "
-			+ "        and cliente.numid=:identificacion "
-			+ "        and cliente.entidadfinanciera_id=:idEntidadFinanciera " + "        and cliente.estado=0 "
-			+ "        and cliente.esDeudor=1 ", nativeQuery = true)
+	@Query(value = """
+            SELECT COUNT(vistaVMD.id_vista)    FROM \
+                    V_ESTADO_VMD vistaVMD, \
+                    CLIENTE cliente \
+                JOIN\
+                    tident tipo \
+                        on tipo.id=cliente.tipoidentificacion_id \
+                WHERE \
+                    tipo.descripcion=vistaVMD.tipoident_cliente \
+                    and vistaVMD.num_id_cliente=cliente.numid \
+                    and tipo.codigo=:tipoIdentificacion \
+                    and cliente.numid=:identificacion \
+                    and cliente.entidadfinanciera_id=:idEntidadFinanciera \
+                    and cliente.estado=0 \
+                    and cliente.esDeudor=1 \
+            """, nativeQuery = true)
 	Long contarPorCliente(@Param("tipoIdentificacion") Long tipoIdentificacion,
 			@Param("identificacion") String identificacion, @Param("idEntidadFinanciera") Long idEntidadFinanciera);
 
-	@Query(value = "SELECT " + "      vistaVMD.* " + "    FROM " + "        V_ESTADO_VMD vistaVMD, "
-			+ "        CLIENTE cliente " + "    JOIN" + "        tident tipo "
-			+ "            on tipo.id=cliente.tipoidentificacion_id " + "    WHERE "
-			+ "        tipo.descripcion=vistaVMD.tipoident_cliente "
-			+ "        and vistaVMD.num_id_cliente=cliente.numid " + "        and tipo.codigo=:tipoIdentificacion "
-			+ "        and cliente.numid=:identificacion "
-			+ "        and cliente.entidadfinanciera_id=:idEntidadFinanciera " + "        and cliente.estado=0 "
-			+ "        and cliente.esDeudor=1 ", nativeQuery = true)
+	@Query(value = """
+            SELECT \
+                  vistaVMD.* \
+                FROM \
+                    V_ESTADO_VMD vistaVMD, \
+                    CLIENTE cliente \
+                JOIN\
+                    tident tipo \
+                        on tipo.id=cliente.tipoidentificacion_id \
+                WHERE \
+                    tipo.descripcion=vistaVMD.tipoident_cliente \
+                    and vistaVMD.num_id_cliente=cliente.numid \
+                    and tipo.codigo=:tipoIdentificacion \
+                    and cliente.numid=:identificacion \
+                    and cliente.entidadfinanciera_id=:idEntidadFinanciera \
+                    and cliente.estado=0 \
+                    and cliente.esDeudor=1 \
+            """, nativeQuery = true)
 	List<VisEstadoVMD> listarPorCliente(@Param("tipoIdentificacion") Long tipoIdentificacion,
 			@Param("identificacion") String identificacion, @Param("idEntidadFinanciera") Long idEntidadFinanciera);
 
-	@Query(value = "SELECT * FROM ( SELECT vistaVMD.*, rownum as FilaExt FROM " + "        V_ESTADO_VMD vistaVMD, "
-			+ "        CLIENTE cliente " + "    JOIN" + "        tident tipo "
-			+ "            on tipo.id=cliente.tipoidentificacion_id " + "    WHERE "
-			+ "        tipo.descripcion=vistaVMD.tipoident_cliente "
-			+ "        and vistaVMD.num_id_cliente=cliente.numid " + "        and tipo.codigo=:tipoIdentificacion "
-			+ "        and cliente.numid=:identificacion "
-			+ "        and cliente.entidadfinanciera_id=:idEntidadFinanciera " + "        and cliente.estado=0 "
-			+ "        and cliente.esDeudor=1) "
-			+ "        WHERE FilaExt BETWEEN :registroInicial AND :registroFinal", nativeQuery = true)
+	@Query(value = """
+            SELECT * FROM ( SELECT vistaVMD.*, rownum as FilaExt FROM \
+                    V_ESTADO_VMD vistaVMD, \
+                    CLIENTE cliente \
+                JOIN\
+                    tident tipo \
+                        on tipo.id=cliente.tipoidentificacion_id \
+                WHERE \
+                    tipo.descripcion=vistaVMD.tipoident_cliente \
+                    and vistaVMD.num_id_cliente=cliente.numid \
+                    and tipo.codigo=:tipoIdentificacion \
+                    and cliente.numid=:identificacion \
+                    and cliente.entidadfinanciera_id=:idEntidadFinanciera \
+                    and cliente.estado=0 \
+                    and cliente.esDeudor=1) \
+                    WHERE FilaExt BETWEEN :registroInicial AND :registroFinal\
+            """, nativeQuery = true)
 	List<VisEstadoVMD> listarPorClientePaginado(@Param("tipoIdentificacion") Long tipoIdentificacion,
 			@Param("identificacion") String identificacion, @Param("idEntidadFinanciera") Long idEntidadFinanciera,
 			@Param("registroInicial") int registroInicial, @Param("registroFinal") int registroFinal);

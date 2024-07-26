@@ -11,9 +11,11 @@ import com.bootfactory.microinformes.domain.model.entity.EntidadFinanciera;
 @Repository
 public interface EntidadFinancieraRepository extends JpaRepository<EntidadFinanciera, Long>{
 	
-	@Query(value = "SELECT e.* FROM ENTIDADFINANCIERA e"
-			+ " WHERE \r\n"
-			+ "e.ID=:idEntidadFinanciera\r\n", nativeQuery = true)
+	@Query(value = """
+            SELECT e.* FROM ENTIDADFINANCIERA e\
+             WHERE 
+            e.ID=:idEntidadFinanciera
+            """, nativeQuery = true)
 	List<EntidadFinanciera> buscarEntidadFinanciera(Long idEntidadFinanciera);
 
 }
